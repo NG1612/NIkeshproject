@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+        section{
+             width: 23%;
+            height: 70%; 
+            display: flex;
+            justify-content: center;
+        }
+        table{
+            width: 100%;
+            border: 5px solid black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            background-color: gray;
+        }
+        thead{
+            width: 88%;
+            height: 50px;
+            margin: 10px;
+            margin-right: 25px;
+            
+        }
+        .output{ 
+            height: 50px;
+            font-size: 35px;
+            width: 106%;     
+        }
+        tbody{
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 8px;
+           justify-content: center;    
+        }
+        td input{
+            width: 35px;
+            height: 35px;
+            margin: 13px;
+            border-radius: 50%;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bolder;
+            border: 0;
+            
+        }
+        .org{
+            background-color: orange;
+            box-shadow: 8px 5px 5px black;
+        }
+        .button{
+            box-shadow: 8px 5px 5px black;
+        }
+        @media(max-width:800px){
+            section{
+                width: 80%;
+                height: 360px;
+            }
+            .output{
+                height: 40px;
+            }
+            td input{
+                width:32px ;
+                height:32px;
+                margin: 10px;
+                
+            }
+        }
+        
+       
+    </style>
+</head>
+<body>
+    <section>
+         <table>
+            <thead>
+                <tr>
+                    <th><input type="text"  class="output" placeholder="0" id="Equation" ></th>
+                </tr>
+            </thead>
+              <tbody>
+                <tr>
+                    <td><input type="button" value="C" class="org" onclick="clearone()">
+                        <input type="button" value="AC" class="org" onclick="clearall()">
+                    <input type="button" value="%" class="org in">
+                    <input type="button" value="/"class="org in"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="7" class="button in">
+                    <input type="button" value="8"class="button in">
+                    <input type="button" value="9" class="button in">
+                    <input type="button" value="*" class="org in"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="4" class="button in">
+                    <input type="button" value="5" class="button in">
+                    <input type="button" value="6" class="button in">
+                    <input type="button" value="-" class="org in"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="1" class="button in">
+                    <input type="button" value="2" class="button in">
+                    <input type="button" value="3" class="button in">
+                    <input type="button" value="+" class="org in"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="00" class="button in">
+                    <input type="button" value="0" class="button in" >
+                    <input type="button" value="." class="button in">
+                    <input type="button" value="=" class="org" onclick="solve()"></td>
+                </tr>
+            
+                
+            </tbody>  
+         </table>
+    </section>
+    <script>
+        let eq=document.getElementById("Equation");
+        let inputs=document.querySelectorAll("input.in");
+        console.log(inputs.length);
+
+        inputs.forEach(x => {
+            x.addEventListener("click",()=>{
+                eq.value +=x.value;
+            })
+            
+        })
+
+        function clearall(){
+            eq.value="";
+        }
+
+        function solve(){
+            eq.value=eval(eq.value);
+        }
+
+        function clearone(){
+            eq.value=eq.value.slice(0,eq.value.length-1);
+        }
+
+    </script>
+</body>
+</html>
